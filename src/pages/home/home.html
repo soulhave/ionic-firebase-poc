@@ -1,0 +1,42 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Blank
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <section *ngIf="afAuth.authState | async; let user; else showLogin">
+    <h1>Welcome {{user.email}}</h1>
+    <button (click)="logout()" ion-button full>Logout</button>
+  </section>
+  <ng-template #showLogin>
+      <form #logingForm="ngForm" (ngSubmit)="login(logingForm)">
+          <h2>Login Form</h2>
+          <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input type="email" name="loginEmail" [(ngModel)]="loginEmail"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" name="loginPassword" [(ngModel)]="loginPassword"></ion-input>
+          </ion-item>
+          <button ion-button full type="submit">Login</button>
+        </form>
+        <hr>
+        <form #signupForm="ngForm" (ngSubmit)="signup(signupForm)">
+          <h2>Login Form</h2>
+          <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input type="email" name="signupEmail" [(ngModel)]="signupEmail"></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-label floating>Password</ion-label>
+            <ion-input type="password" name="signupPassword" [(ngModel)]="signupPassword"></ion-input>
+          </ion-item>
+          <button ion-button full type="submit">Sign Up</button>
+        </form>
+  </ng-template>
+
+</ion-content>
